@@ -1,0 +1,17 @@
+This application follows a typical layered architecture that separates concerns and promotes modularity, making it easier to maintain and extend. I will give a brief overview of how different classes influence each other and their relations.
+
+1. **Model classes (Customer, Trip, Guide):** These are the entities representing the domain objects in the application. They define the structure and relationships between the different objects.
+
+2. **ViewModel classes (CustomerViewModel, TripViewModel):** These classes are used to structure the data specifically for the API's input/output. They help in separating the presentation concerns from the domain concerns. They are used to map the data from the Model classes to the format that the API expects and vice versa.
+
+3. **AppDbContext:** This class inherits from `DbContext` and is responsible for setting up the connection to the underlying data store using Entity Framework Core. It also defines the `DbSet` properties for each entity (Customer, Trip, and Guide) that the application will interact with.
+
+4. **IRepository interface:** This interface defines a generic repository pattern for performing CRUD operations on different entities. It abstracts the data access logic from the rest of the application, allowing for flexibility in switching data storage mechanisms or implementing different strategies.
+
+5. **Repository class:** This class implements the `IRepository` interface using Entity Framework Core. It uses the `AppDbContext` instance to interact with the data store and perform the CRUD operations on the entities. This class is the bridge between the data access layer and the business logic layer, providing a consistent way of interacting with data.
+
+6. **Controllers (CustomerController, TripController):** These classes inherit from `ControllerBase` and are responsible for handling incoming HTTP requests, executing the appropriate business logic, and returning the HTTP responses. They use the `IRepository` interface to interact with the data store, ensuring that data access logic is separated from the business logic. The controllers also use the ViewModel classes to map the data from the Model classes to the expected API format and vice versa.
+
+The application's architecture is designed to provide a clear separation of concerns, which makes it easier to maintain, test, and evolve. By using interfaces like `IRepository`, the application can easily swap out different implementations, making it more flexible and adaptable to different data storage mechanisms. Additionally, using ViewModel classes helps separate presentation concerns from domain concerns, allowing for easier adjustments to the API's input/output format without affecting the underlying domain logic.
+
+In summary, this architecture allows for a clean and modular design that separates concerns into distinct layers, making it easier to understand, maintain, and extend the application.

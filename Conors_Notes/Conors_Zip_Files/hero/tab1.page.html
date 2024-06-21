@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="!Heroes">
+  <ion-card>
+    <ion-skeleton-text style="height:200px;" animated></ion-skeleton-text>
+    <ion-card-header></ion-card-header>
+  </ion-card>
+
+  <ion-card>
+    <ion-skeleton-text style="height:200px;" animated></ion-skeleton-text>
+    <ion-card-header></ion-card-header>
+  </ion-card>
+
+  <ion-card>
+    <ion-skeleton-text style="height:200px;" animated></ion-skeleton-text>
+    <ion-card-header></ion-card-header>
+  </ion-card>
+
+  <ion-card>
+    <ion-skeleton-text style="height:200px;" animated></ion-skeleton-text>
+    <ion-card-header>
+      
+    </ion-card-header>
+  </ion-card>
+</div>
+
+<ion-refresher slot="fixed" (ionRefresh)="refreshHeroes($event)">
+<ion-refresher-content refreshingText="Loading Heroes..."></ion-refresher-content>
+</ion-refresher>
+  
+  <ion-card button *ngFor="let hero of (Heroes | async)" [routerLink]="['hero-detail', hero.heroId]">
+    <ion-img [src]="hero.imageBase64"></ion-img>
+  </ion-card>
+</ion-content>
+
