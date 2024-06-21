@@ -1,0 +1,42 @@
+<div *ngIf="chartsLoaded">  
+    <div class="chart-container">
+        <div class="chart-item">
+            <canvas baseChart 
+                [data]="brandData" 
+                [type]="'bar'"
+                [options]="brandChartOptions"
+            >
+            </canvas> 
+        </div>
+        <div class="chart-item">
+            <canvas baseChart 
+                [data]="productTypeData" 
+                [type]="'bar'"
+                [options]="productTypeChartOptions"
+            >
+            </canvas>  
+        </div>
+    </div>
+
+        <h1>Active Products Report</h1>
+    <mat-accordion multi="true">
+        <mat-expansion-panel *ngFor="let brand of groupedProducts | keyvalue">
+          <mat-expansion-panel-header>
+            {{ brand.key }}
+          </mat-expansion-panel-header>
+      
+          <mat-list>
+            <mat-list-item  *ngFor="let productType of brand.value | keyvalue">
+              <h4 mat-line>{{ productType.key }}</h4>
+              <div *ngFor="let product of productType.value">
+                <p mat-line>{{ product['productName'] }} - {{ product['productPrice'] | currency }}
+                </p>
+              </div>
+            </mat-list-item>
+          </mat-list>
+      
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+
+

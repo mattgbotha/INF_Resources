@@ -1,0 +1,77 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> Home </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ios-custom-content">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      
+    </ion-toolbar>
+  </ion-header>
+  <img src="/assets/Pictures/Nandos food.png">
+  <ion-grid>
+      <ion-row>
+      <ion-col size="12">
+        <h2 class="ion-text-center ion-padding">All Restaurants</h2>
+      </ion-col>
+    </ion-row>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" *ngFor="let restaurant of restaurantList">
+          <ion-card>
+            <ion-card-content>
+              <ion-item lines="none">
+                <ion-thumbnail slot="start">
+                  <img alt="Restaurant image" [src]="restaurant.image" />
+                  <!--IMAGE-->
+                </ion-thumbnail>
+                <ion-label>
+                  <h3>{{ restaurant.name }}</h3>
+                  <!--NAME-->
+                  <p>{{ restaurant.slogan }}</p>
+                  <!--SLOGAN-->
+                  <p style="color: red">
+                    Price: {{ restaurant.priceRange | currency:'ZAR':'symbol' }}
+                  </p>
+                  <!--PRICE RANGE-->
+                </ion-label>
+              </ion-item>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                "
+              >
+                <div style="display: flex; align-items: center">
+                  <ion-icon
+                    name="star"
+                    style="margin-right: 5px; color: gold"
+                  ></ion-icon>
+                  <span style="color: gold">{{ restaurant.rating }}</span>
+                  <!--RATING-->
+                </div>
+                <div style="display: flex; align-items: center">
+                  <span>{{ restaurant.distance }}</span>
+                  <!--DISTANCE-->
+                </div>
+                <ion-button
+                  (click)="addToCart(restaurant);"
+                  size="small"
+                  color="primary"
+                  style="align-self: flex-start"
+                >
+                  <ion-icon slot="icon-only" name="cart"></ion-icon>
+                  Order Now
+                </ion-button>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-grid></ion-content
+>

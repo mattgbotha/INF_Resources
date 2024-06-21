@@ -1,0 +1,31 @@
+<div class="container">   
+    <h1>Add New Course</h1>
+
+    <div class="row">
+      <div class="col-6">
+        <form #form="ngForm" (ngSubmit)="addCourse()" novalidate>
+          <div class="row mb-3">
+            <label for="name" class="col-sm-2 col-form-label">Name</label>
+            <input style="border-color: darkgray;" type="text" class="form-control" id="name" name="name" [(ngModel)]="addCourseAtt.name" required #nameField="ngModel">
+          </div>
+    
+          <div class="row mb-3">
+            <label for="duration" class="col-sm-2 col-form-label">Duration</label>
+            <input style="border-color: darkgray;" type="text" class="form-control" id="duration" name="duration" [(ngModel)]="addCourseAtt.duration" required #durationField="ngModel">
+          </div>
+    
+          <div class="row mb-3">
+            <label for="description" class="col-sm-2 col-form-label">Description</label>
+            <input style="border-color: darkgray;" type="text" class="form-control" id="description" name="description" [(ngModel)]="addCourseAtt.description" required #descriptionField="ngModel">
+          </div>
+    
+          <button type="submit" class="btn-add" [disabled]="form.invalid">Add</button>
+          <button type="button" class="btn-cancel" (click)="cancel()">Cancel</button>
+        </form>
+      </div>
+    </div>
+    
+
+
+   
+</div>

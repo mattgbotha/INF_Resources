@@ -1,0 +1,23 @@
+
+<h1>Course Listing</h1>
+
+  <div class="card-container">
+    <div class="card" *ngFor="let course of courses">
+      <div class="card-header">
+        <h2>{{ course.name }}</h2>
+        <p>Duration: {{course.duration}}</p>
+      </div>
+      <div class="card-body">
+        <p>Description: {{course.description}}</p>
+      </div>
+      <div class="card-footer">
+        <button class="btn-edit" [routerLink]="['/editCourses', course.courseId]">Edit</button>
+        <button class="btn-delete" (click)="deleteCourse(course.courseId)">Delete</button>
+      </div>
+    </div>
+  </div>
+  
+
+
+  
+

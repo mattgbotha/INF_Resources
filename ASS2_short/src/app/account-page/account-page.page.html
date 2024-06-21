@@ -1,0 +1,199 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Account</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-grid>
+        <ion-row align-items-center justify-content-start>
+          <ion-col size="auto">
+            <ion-icon name="person-outline" class="big-icon"></ion-icon>
+          </ion-col>
+          <ion-col size="auto">
+            <ion-card-title>User Details</ion-card-title>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>Name: <span>{{ user.name }}</span></p>
+      <p>Email: <span>{{ user.email }}</span></p>
+      <p>Phone: <span>{{ user.phone }}</span></p>
+      <ion-button id="open-edit-user-details-modal" expand="block"
+        >Edit User Details</ion-button
+      >
+      <ion-modal trigger="open-edit-user-details-modal">
+        <ng-template #editUserDetailsModal>
+          <ion-header>
+            <ion-toolbar>
+              <ion-title>Edit User Details</ion-title>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content>
+            <form
+              [formGroup]="editUserDetailsForm"
+              (ngSubmit)="updateUserDetails()"
+            >
+              <ion-item>
+                <ion-label>Name:</ion-label>
+                <ion-input formControlName="name"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Email:</ion-label>
+                <ion-input formControlName="email"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Phone:</ion-label>
+                <ion-input formControlName="phone"></ion-input>
+              </ion-item>
+              <ion-button expand="block" type="submit">Save</ion-button>
+              <ion-button expand="block" (click)="dismissModal()"
+                >Close</ion-button
+              >
+            </form>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="auto" class="ion-align-self-center">
+            <ion-icon name="home-outline" class="big-icon"></ion-icon>
+          </ion-col>
+          <ion-col class="ion-align-self-center">
+            <ion-card-title>Manage Addresses</ion-card-title>
+          </ion-col>
+          <ion-col size="auto" text-right class="ion-align-self-center">
+            <ion-button fill="clear" size="small">
+              <ion-icon
+                slot="icon-only"
+                name="chevron-forward-outline"
+              ></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-grid>
+        <ion-row align-items-center justify-content-start>
+          <ion-col size="auto">
+            <ion-icon name="clipboard-outline" class="big-icon"></ion-icon>
+          </ion-col>
+          <ion-col size="auto">
+            <ion-card-title>Past Orders</ion-card-title>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let order of pastOrders">
+          <ion-col size="12">
+            <ion-card>
+              <ion-card-content>
+                <ion-item lines="none">
+                  <ion-thumbnail slot="start">
+                    <img alt="Restaurant image" [src]="order.restaurantImage" />
+                  </ion-thumbnail>
+                  <ion-label>
+                    <h2>{{ order.restaurantName }}</h2>
+                    <p>{{ order.price | currency:'ZAR':'symbol' }}</p>
+                  </ion-label>
+                </ion-item>
+                <br />
+                <ion-badge>Quantity: {{ order.quantity }}</ion-badge>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-item>
+      </ion-list>
+      <br />
+      <h2>Total: {{ pastTotal | currency:'ZAR':'symbol' }}</h2>
+      <br />
+      <ion-button expand="block" (click)="reorder()">Reorder</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <br />
+
+  <ion-row>
+    <ion-col>
+      <ion-button fill="solid" expand="block" id="open-get-help-modal">
+        <ion-icon name="help-circle"></ion-icon>
+        Get Help
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+  <ion-modal trigger="open-get-help-modal">
+    <ng-template #getHelpModal>
+      <ion-header>
+        <ion-toolbar>
+          <ion-icon name="help-circle"></ion-icon>
+          <ion-title>Get Help</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title> Getting Started </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+              eleifend nisl sit amet lectus laoreet hendrerit.
+            </p>
+            <p>
+              Sed ornare nisi a arcu blandit, quis mollis purus lobortis.
+              Pellentesque habitant morbi tristique senectus et netus et
+              malesuada fames ac turpis egestas.
+            </p>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title> Troubleshooting </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>
+              Sed vulputate, nisi at aliquet posuere, justo diam suscipit lorem,
+              sit amet rhoncus nunc ex nec nulla.
+            </p>
+            <p>
+              Suspendisse vel dolor auctor, blandit sapien eu, fringilla nibh.
+              Integer gravida ante eget felis volutpat ullamcorper.
+            </p>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title> Contact Us </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>
+              If you have any questions or need further assistance, please feel
+              free to contact us at:
+            </p>
+            <p>Email: support@example.com</p>
+            <p>Phone: 1-800-555-1234</p>
+          </ion-card-content>
+        </ion-card>
+        <ion-button expand="block" (click)="closeModal()">Close</ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

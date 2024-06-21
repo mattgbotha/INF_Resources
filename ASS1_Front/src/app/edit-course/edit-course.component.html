@@ -1,0 +1,33 @@
+<div class="container">   
+    <h1>Edit Course</h1>
+
+<div class="row">
+    <div class="col-6">
+         <form #form="ngForm" (ngSubmit)="updateCourse()">
+
+            <div class="row mb-3">
+                <label for="name" class="col-sm-2 col-form-label">Name</label>
+            
+                <input style="border-color: darkgray;" type="text" class="form-control" id="name" name="name" [(ngModel)] = "courseAtt.name">
+            
+            </div>
+
+            <div class="row mb-3">
+                <label for="duration" class="col-sm-2 col-form-label">Duration</label>
+                
+                <input style="border-color: darkgray;" type="text" class="form-control" id="duration" name="duration" [(ngModel)] = "courseAtt.duration">
+                
+            </div>
+
+            <div class="row mb-3">
+                <label for="description" class="col-sm-2 col-form-label">Description</label>
+            
+                <input style="border-color: darkgray;" type="text" class="form-control" id="description" name="description" [(ngModel)] = "courseAtt.description">
+                
+            </div>
+        
+            <button type="submit" class="btn-save">Save</button> 
+            <button type="button" class="btn-cancel" (click)="cancel()" >Cancel</button>
+      </form>
+    </div>
+</div>
